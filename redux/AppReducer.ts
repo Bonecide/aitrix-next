@@ -6,6 +6,7 @@ const initialState = {
     initializing: false as boolean,
 }
 export type AppDataInitialStateType = typeof initialState;
+// @ts-ignore
 const appReducer = (state = initialState, action:any) :InitialStateType =>{
     switch (action.type){
         case INITIALIZING:{

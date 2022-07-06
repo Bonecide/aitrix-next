@@ -141,9 +141,11 @@ const tradingBotReducer = (state = initialState, action:any) :TradingBotInitialS
     switch (action.type){
         case INITIALIZINGDEVICE:{
             console.log("БОТ: Инициализация - успешно");
+            // @ts-ignore
             return{ ...state, device: action.deviceType}
         }
         default:{
+            // @ts-ignore
             return state
         }
     }

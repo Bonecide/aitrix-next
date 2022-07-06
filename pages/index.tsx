@@ -35,20 +35,22 @@ export default function MainPage() {
     dispatch(getTechnologyListTC());
     dispatch(getReviewsListTC());
   }, []);
- 
+//  @ts-ignore
   const mainPageData = useSelector((state: AppStateType) => state.mainPageData);
   return (
     <>
       {mainPageData.isLoading && <PageLoader />}
       <section className={s.offer} id="#main">
-      
+      {/* @ts-ignore */}
         <Image layout="raw" src={offer_img_clip} className={`${s.offer__img_clip} ${s.left}  `} alt="offer__clipping" />
+        {/* @ts-ignore */}
         <Image layout="raw" src={offer_img_clip2} className={`${s.offer__img_clip} ${s.right}  `} alt="offer__clipping" />
         <div className={`${s.offer__container} container`}>
           <div className="row">
             <div className="col-12">
               <header className={`${s.header}`}>
                 <div className={s.header__logo}>
+                  {/* @ts-ignore */}
                   <Image layout="raw"  src={logo_img} alt="logo_img" />
                 </div>
                 <ul className={s.header__nav}>
@@ -90,6 +92,7 @@ export default function MainPage() {
               </div>
             </div>
             <div className="col-6">
+              {/* @ts-ignore */}
               <Image layout="raw" src={offer_img} alt="offer_img" className={`${s.offer__img} `} />
             </div>
           </div>
@@ -100,6 +103,7 @@ export default function MainPage() {
           <div className="row">
             <div className="col-xs-12 col-lg-6  ">
               <div className={s.about__img}>
+                {/* @ts-ignore */}
                 <Image layout="raw" src={about_img} alt="about_img" />
               </div>
             </div>
@@ -163,7 +167,9 @@ export default function MainPage() {
             </div>
             <div className="col-12  ">
               <div className={s.dev__list}>
+                
                 {mainPageData.servicesList.length >= 1 ? (
+                //  @ts-ignore
                   mainPageData.servicesList.map((i) => {
                     return (
                       <div className={s.item} key={i.id}>
@@ -334,6 +340,7 @@ export default function MainPage() {
             <div className="col-12  ">
               <div className={s.tech__list}>
                 {mainPageData.technologyList.length >= 1 ? (
+                  // @ts-ignore
                   mainPageData.technologyList.map((t) => {
                     return (
                       <div className={s.tech__item} key={t.id}>

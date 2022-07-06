@@ -125,6 +125,7 @@ export const sendOrderDataTC = (orderData:object) => {
                 status: "error",
                 errors: '',
             }
+            // @ts-ignore
             for (let [key, value] of Object.entries(error.response.data)) {
                 response.errors += `Поле: ${key}\n </br> Ошибка: ${value}\n `
             }

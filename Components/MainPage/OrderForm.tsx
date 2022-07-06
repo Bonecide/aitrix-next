@@ -23,6 +23,7 @@ export const OrderForm: FC<PropsType> = (props) => {
     const toggleInputSelectIsActive = ()=>{
         inputSelectIsActive ? setInputSelectIsActive(false) : setInputSelectIsActive(true)
     }
+    //@ts-ignore
     const changeServiceType = (serviceType)=>{
         setServiceType(serviceType)
         toggleInputSelectIsActive()
@@ -61,6 +62,7 @@ export const OrderForm: FC<PropsType> = (props) => {
     }
     return (
         <div className={s.contact__content}>
+            {/* @ts-ignore */}
             <Image layout="raw" src={contact_img} alt="contact_img" className={s.contact__img} />
             <div className={s.contact__form}>
                 <h5 className={s.contact__title}>Наши контакты</h5>
@@ -102,6 +104,7 @@ export const OrderForm: FC<PropsType> = (props) => {
                     </div>
                     <div className={s.policy}>
                         <p>Поставьте галочку, чтобы дать свое согласие на обработку ваших персональных данных, в соответствии с ФЗ №152-ФЗ «О персональных данных»</p>
+                        {/* @ts-ignore */}
                         <span className={policyIsActive && s.checked} onClick={()=>togglePolicyIsActive()}></span>
                     </div>
                     <span className={s.form__btn} onClick={() => sendOrder()}>Отправить<i className="fa-regular fa-paper-plane"></i></span>
