@@ -46,10 +46,12 @@
 }
 
 .header__logo {
-    position: relative;
+    
+    margin-right: 50px;
+}
+.header__logo img {
     width: 7vw  ;
     height: auto;
-    margin-right: 50px;
 }
 
 .header__nav {
@@ -500,6 +502,7 @@ section.advantage {
     font-size: 14px;
     font-weight: 400;
     margin-left: 10px;
+    margin-bottom: 0;
 }
 .advantage__img img{
     width: 100%;

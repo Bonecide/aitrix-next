@@ -7,8 +7,8 @@ import { ProjectsSlider }  from "../Components/MainPage/ProjectsSlider/ProjectsS
 import  { getServicesListTC, getTechnologyListTC, getReviewsListTC }  from "../redux/MainPageReducer";
 import { OrderForm }  from "../Components/MainPage/OrderForm";
 import PageLoader from "../Components/Assets/PageLoader/PageLoader";
-import Image from "next/image";
-
+import Link from "next/link";
+import Image from "next/future/image";
 //IMG
 import logo_img from "../img/logo.png";
 import offer_img from "../img/offer_img.png";
@@ -22,6 +22,7 @@ import advantage_img3 from "../img/advantage_img3.png";
 import advantage_item from "../img/adv_item.svg";
 import stages_clip_img_1 from "../img/stages_clipp3.png";
 import stages_clip_img_2 from "../img/stages_clipp2.png";
+
 
 
 type PropsType = {};
@@ -41,21 +42,41 @@ export default function MainPage() {
       {mainPageData.isLoading && <PageLoader />}
       <section className={s.offer} id="#main">
       
-        <Image src={offer_img_clip} className={`${s.offer__img_clip} ${s.left}  `} alt="offer__clipping" />
-        <Image src={offer_img_clip2} className={`${s.offer__img_clip} ${s.right}  `} alt="offer__clipping" />
+        <Image layout="raw" src={offer_img_clip} className={`${s.offer__img_clip} ${s.left}  `} alt="offer__clipping" />
+        <Image layout="raw" src={offer_img_clip2} className={`${s.offer__img_clip} ${s.right}  `} alt="offer__clipping" />
         <div className={`${s.offer__container} container`}>
           <div className="row">
             <div className="col-12">
               <header className={`${s.header}`}>
                 <div className={s.header__logo}>
-                  <Image  src={logo_img} alt="logo_img" />
+                  <Image layout="raw"  src={logo_img} alt="logo_img" />
                 </div>
                 <ul className={s.header__nav}>
-                  <a href={"/#about"}><span>О нас</span></a>
-                  <a href={"/#services"}><span>Услуги</span></a>
-                  <a href={"/#advantage"}><span>Преимущества</span></a>
-                  <a href={"/#stages"}><span>Этапы работы</span></a>
-                  <a href={"/#contact"}><span>Контакты</span></a>
+                  <Link href={"#about"}>
+                    <a>
+                    <span>О нас</span>
+                    </a>
+                    </Link>
+                  <Link href={"#services"}>
+                    <a>
+                    <span>Услуги</span>
+                    </a>
+                  </Link>
+                  <Link href={"#advantage"}>
+                    <a>
+                    <span>Преимущества</span>
+                    </a>
+                  </Link>
+                  <Link href={"#stages"}>
+                    <a>
+                    <span>Этапы Работы</span>
+                    </a>
+                  </Link>
+                  <Link href={"#contact"}>
+                    <a>
+                    <span>Контакты</span>
+                    </a>
+                  </Link>
                 </ul>
               </header>
             </div>
@@ -69,17 +90,17 @@ export default function MainPage() {
               </div>
             </div>
             <div className="col-6">
-              <Image src={offer_img} alt="offer_img" className={`${s.offer__img} `} />
+              <Image layout="raw" src={offer_img} alt="offer_img" className={`${s.offer__img} `} />
             </div>
           </div>
         </div>
       </section>
-      <section className={s.about} id="#about">
+      <section className={s.about} id="about">
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-lg-6  ">
               <div className={s.about__img}>
-                <Image src={about_img} alt="about_img" />
+                <Image layout="raw" src={about_img} alt="about_img" />
               </div>
             </div>
             <div className="col-xs-12 col-lg-6">
@@ -127,7 +148,7 @@ export default function MainPage() {
           </div>
         </div>
       </section>
-      <section className={s.dev} id="#services">
+      <section className={s.dev} id="services">
         <div className="container">
           <div className="row">
             <div className="col-12  ">
@@ -166,7 +187,7 @@ export default function MainPage() {
         </div>
       </section>
       {/* {mainPageData.projectsList.length >= 1 && <section className={s.projects}><ProjectsSlider/></section>} */}
-      <section className={s.advantage} id="#advantage">
+      <section className={s.advantage} id="advantage">
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-md-7  ">
@@ -335,7 +356,7 @@ export default function MainPage() {
           </div>
         </div>
       </section>
-      <section className={s.stages} id="#stages">
+      <section className={s.stages} id="stages">
         {/* <img
           src={stages_clip_img_1}
           alt="stages_clip_img_1"
@@ -428,7 +449,7 @@ export default function MainPage() {
       {/* <section className={s.reviews}>
         <Reviews />
       </section> */}
-      <section className={`${s.contact}  `} id="#contact">
+      <section className={`${s.contact}  `} id="contact">
         <div className="container">
           <div className="row">
             <div className="col-12">

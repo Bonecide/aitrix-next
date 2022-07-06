@@ -4,7 +4,7 @@ import { ToastBig } from '../Assets/Toast.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStateType } from '../../redux/store'
 import { sendOrderDataTC } from '../../redux/MainPageReducer'
-import Image from "next/image";
+import Image from "next/future/image";
 import contact_img from "../../img/contact_img.png";
 
 type PropsType = {}
@@ -61,7 +61,7 @@ export const OrderForm: FC<PropsType> = (props) => {
     }
     return (
         <div className={s.contact__content}>
-            <Image src={contact_img} alt="contact_img" className={s.contact__img} />
+            <Image layout="raw" src={contact_img} alt="contact_img" className={s.contact__img} />
             <div className={s.contact__form}>
                 <h5 className={s.contact__title}>Наши контакты</h5>
                 <p>Оставьте свою контактную информацию, и мы с радостью свяжемся с вами!</p>
