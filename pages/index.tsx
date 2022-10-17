@@ -1,10 +1,6 @@
-import React, { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState } from "react";
+import {  useSelector } from "react-redux";
 import s from "../styles/MainPage.module.css";
-import  AppStateType  from "../redux/store";
-import { Reviews }  from "../Components/MainPage/ReviewsSlider/ReviewsSlider";
-import { ProjectsSlider }  from "../Components/MainPage/ProjectsSlider/ProjectsSlider";
-import  { getServicesListTC, getTechnologyListTC, getReviewsListTC }  from "../redux/MainPageReducer";
 import { OrderForm }  from "../Components/MainPage/OrderForm";
 import PageLoader from "../Components/Assets/PageLoader/PageLoader";
 import Link from "next/link";
@@ -22,25 +18,49 @@ import advantage_img3 from "../img/advantage_img3.png";
 import advantage_item from "../img/adv_item.svg";
 import stages_clip_img_1 from "../img/stages_clipp3.png";
 import stages_clip_img_2 from "../img/stages_clipp2.png";
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import CloseIcon from '@mui/icons-material/Close';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import Axios from 'axios'
 
 
 
 type PropsType = {};
+// @ts-ignore
+export default function MainPage({servicesList,technologyList}) {
 
-export default function MainPage() {
- 
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getServicesListTC());
-    dispatch(getTechnologyListTC());
-    dispatch(getReviewsListTC());
-  }, []);
+  const [isPhone,setIsPhone] = useState(false)
 //  @ts-ignore
   const mainPageData = useSelector((state: AppStateType) => state.mainPageData);
   return (
     <>
       {mainPageData.isLoading && <PageLoader />}
       <section className={s.offer} id="#main">
+      <div className={s.fixed}>
+
+<div className={s.linkSocial} style={{
+    'transition' : '0.3s',
+    'opacity' : isPhone? '1' : '0',
+    'display' : isPhone ? 'flex' : 'none',
+    'gap' : '20px',
+    'position' : 'absolute',
+    'right' : '0px',
+    'bottom': '80px'
+  }}>
+    <a href="https://wa.me/79147351027?text=Здравствуйте%2C+у+меня+есть+вопрос" target={'_blank'} rel='noreferrer'><WhatsAppIcon className={s.phoneIcon}/></a>
+    <a href="tel:+996%20507%2049-60-44" target={'_blank'} rel='noreferrer'><LocalPhoneIcon className={s.phoneIcon}/></a>
+    <a href="tg://resolve?domain=JoKikigo"  target={'_blank'} rel='noreferrer'><TelegramIcon className={s.phoneIcon}/></a>
+  </div>
+  <button style={{
+  'transition' : '0.3s',
+  'position' : 'absolute',
+  'bottom' : !isPhone ? '10px' : '10px',
+  'right' : !isPhone ? '0px' : '0px'
+}} onClick={() => setIsPhone(!isPhone)}>
+  {!isPhone? <LocalPhoneIcon className={s.phoneIcon}/> : <CloseIcon className={s.phoneIcon}/>}
+</button>
+</div>
       {/* @ts-ignore */}
         <Image layout="raw" src={offer_img_clip} className={`${s.offer__img_clip} ${s.left}  `} alt="offer__clipping" />
         {/* @ts-ignore */}
@@ -113,12 +133,7 @@ export default function MainPage() {
                 <h3 className={s.title}>Почему Aitrix?</h3>
               </div>
               <p className={`${s.about__text}  `}>
-                Мы специализируемся на создании эффективных инструментов
-                иготовых проектов для электронной коммерции и присутствия
-                винтернете. Мы уже долгое время сотрудничаем с малым бизнесом
-                вРоссии и СНГ и прекрасно понимаем нужды наших
-                клиентов,предоставляем надежные решения для повышения прибыли
-                вашегобизнеса или стартаппа.
+              Aitrix - это баланс инновационных технологий и эмоционального digital. Пишем аккуратный код и эстетично упаковываем его в адаптивный дизайн. Впечатления от наших сайтов превращаются в глубокий потребительский опыт, который вдохновляет клиентов возвращаться за покупками снова и снова.
               </p>
               <div className={`${s.about__list}  `}>
                 <div className={s.item}>
@@ -143,7 +158,7 @@ export default function MainPage() {
                     <p>Гарантия</p>
                     <span>
                       Мы соблюдаем оговоренные сроки сдачи проектов
-                      иподдерживаем наших клиентов в случае форс-мажоров.
+                      и поддерживаем наших клиентов в случае форс-мажоров.
                     </span>
                   </div>
                 </div>
@@ -168,9 +183,9 @@ export default function MainPage() {
             <div className="col-12  ">
               <div className={s.dev__list}>
                 
-                {mainPageData.servicesList.length >= 1 ? (
+                {servicesList?.length >= 1 ? (
                 //  @ts-ignore
-                  mainPageData.servicesList.map((i) => {
+                  servicesList.map((i) => {
                     return (
                       <div className={s.item} key={i.id}>
                         <div className={s.item__info}>
@@ -339,9 +354,9 @@ export default function MainPage() {
             </div>
             <div className="col-12  ">
               <div className={s.tech__list}>
-                {mainPageData.technologyList.length >= 1 ? (
+                {technologyList?.length >= 1 ? (
                   // @ts-ignore
-                  mainPageData.technologyList.map((t) => {
+                  technologyList.map((t) => {
                     return (
                       <div className={s.tech__item} key={t.id}>
                         <div className={s.tech__img} style={{backgroundImage:`url(${t.imgUrl})`}}></div>
@@ -469,4 +484,20 @@ export default function MainPage() {
       </section>
     </>
   );
+};
+MainPage.getInitialProps = async () => {
+  const response = await fetch('https://api.aitrix.online/api/contents/services/')
+  const data = await response.json()
+  console.log(data)
+  return {
+    servicesList : data
+  }
+};
+//@ts-ignore
+MainPage.getInitialProps = async () => {
+  const response = await fetch('https://api.aitrix.online/api/contents/technology/')
+  const data = await response.json()
+  return {
+    technologyList: data
+  }
 };

@@ -113,7 +113,6 @@ export const OrderForm: FC<PropsType> = (props) => {
             <div className={s.contact__info}>
                 <div className={s.contact__list}>
                     <a href="tel:+996 507 49-60-44"><i className="fa-solid fa-phone"></i>+996 507 49-60-44</a>
-                    <a href="tel:+79147531027"><i className="fa-solid fa-phone"></i>+7 (914) 753-10-27</a>
                     {/* <li><i className="fa-solid fa-location-dot"></i>Улица пушкина дом колотушкина</li> */}
                     <a href="mailto:support@aitrix.online"><i className="fa-solid fa-at"></i>support@aitrix.online</a>
                 </div>
